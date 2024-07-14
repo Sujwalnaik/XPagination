@@ -1,7 +1,5 @@
-// import React from "react";
-
 import { useEffect, useState } from "react";
-import { tableDataRecord } from "./pagination";
+import { buttons, numberSection, tableDataRecord } from "./pagination";
 import axios from "axios";
 
 function PaginationTable() {
@@ -10,7 +8,6 @@ function PaginationTable() {
 
   //pagination
   const [page, setPage] = useState(1);
-  //   const [size, setSize] = useState(10);
   const [totalPages, setTotalPages] = useState();
 
   const itemperPage = 10;
@@ -76,24 +73,29 @@ function PaginationTable() {
           <th>Email</th>
           <th>Role</th>
         </tr>
-        {currentItems.map((ele) => {
-          const { id, name, email, role } = ele;
-          return (
-            <>
-              <tr
-                style={{
-                  ...tableDataRecord,
-                  borderTop: "1px solid grey",
-                }}
-              >
-                <td>{id}</td>
-                <td>{name}</td>
-                <td>{email}</td>
-                <td>{role}</td>
-              </tr>
-            </>
-          );
-        })}
+
+        {currentItems.length > 0 ? (
+          currentItems.map((ele) => {
+            const { id, name, email, role } = ele;
+            return (
+              <>
+                <tr
+                  style={{
+                    ...tableDataRecord,
+                    borderTop: "1px solid grey",
+                  }}
+                >
+                  <td>{id}</td>
+                  <td>{name}</td>
+                  <td>{email}</td>
+                  <td>{role}</td>
+                </tr>
+              </>
+            );
+          })
+        ) : (
+          <div>No Data Found</div>
+        )}
       </table>
 
       <div
@@ -102,37 +104,14 @@ function PaginationTable() {
         <button
           onClick={() => handlePageChange(page - 1)}
           disabled={page === 1}
-          style={{
-            background: "#006A4E",
-            color: "white",
-            padding: "5px 10px",
-            cursor: "pointer",
-            border: "none",
-            borderRadius: "10px",
-          }}
+          style={buttons}
         >
           Previous
         </button>
 
-        <span
-          style={{
-            background: "#006A4E",
-            color: "white",
-            padding: "10px 15px",
-            borderRadius: "8px",
-          }}
-        >
-          {page}
-        </span>
+        <span style={numberSection}>{page}</span>
         <button
-          style={{
-            background: "#006A4E",
-            color: "white",
-            padding: "5px 10px",
-            cursor: "pointer",
-            border: "none",
-            borderRadius: "10px",
-          }}
+          style={buttons}
           onClick={() => handlePageChange(page + 1)}
           disabled={page === totalPages}
         >
