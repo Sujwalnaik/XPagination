@@ -8,7 +8,7 @@ function PaginationTable() {
 
   //pagination
   const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState();
+  const [totalPages, setTotalPages] = useState(0);
 
   const itemperPage = 10;
 
@@ -18,7 +18,7 @@ function PaginationTable() {
 
     const fetchData = async () => {
       try {
-        setLoading(false);
+        setLoading(true);
         const response = await axios.get(ApiUrl);
         const data = response.data;
         setData(data);
@@ -60,42 +60,45 @@ function PaginationTable() {
     >
       <h1>Employee Data Table</h1>
       <table style={{ borderBottom: "2px solid #006A4E", textAlign: "center" }}>
-        <tr
-          style={{
-            ...tableDataRecord,
-            fontWeight: 600,
-            background: "#006A4E",
-            color: "white",
-          }}
-        >
-          <th>ID</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Role</th>
-        </tr>
-
-        {currentItems.length > 0 ? (
-          currentItems.map((ele) => {
-            const { id, name, email, role } = ele;
-            return (
-              <>
-                <tr
-                  style={{
-                    ...tableDataRecord,
-                    borderTop: "1px solid grey",
-                  }}
-                >
-                  <td>{id}</td>
-                  <td>{name}</td>
-                  <td>{email}</td>
-                  <td>{role}</td>
-                </tr>
-              </>
-            );
-          })
-        ) : (
-          <div style={{ margin: "20px" }}>No Data Found</div>
-        )}
+        <thead>
+          <tr
+            style={{
+              ...tableDataRecord,
+              fontWeight: 600,
+              background: "#006A4E",
+              color: "white",
+            }}
+          >
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          {currentItems.length > 0 ? (
+            currentItems.map((ele) => {
+              const { id, name, email, role } = ele;
+              return (
+                <>
+                  <tr
+                    style={{
+                      ...tableDataRecord,
+                      borderTop: "1px solid grey",
+                    }}
+                  >
+                    <td>{id}</td>
+                    <td>{name}</td>
+                    <td>{email}</td>
+                    <td>{role}</td>
+                  </tr>
+                </>
+              );
+            })
+          ) : (
+            <div style={{ margin: "20px" }}>No Data Found</div>
+          )}
+        </tbody>
       </table>
 
       <div
