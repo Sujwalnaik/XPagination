@@ -27,7 +27,7 @@ function PaginationTable() {
         // setLoading(false);
       } catch (error) {
         console.error(error, "Data is unable to fetch data");
-        // setLoading(false);
+        alert("something went wrong");
       } finally {
         setLoading(false);
       }
@@ -59,7 +59,7 @@ function PaginationTable() {
       }}
     >
       <h1>Employee Data Table</h1>
-      <table style={{ borderBottom: "2px solid #006A4E" }}>
+      <table style={{ borderBottom: "2px solid #006A4E", textAlign: "center" }}>
         <tr
           style={{
             ...tableDataRecord,
@@ -94,7 +94,7 @@ function PaginationTable() {
             );
           })
         ) : (
-          <div>No Data Found</div>
+          <div style={{ margin: "20px" }}>No Data Found</div>
         )}
       </table>
 
