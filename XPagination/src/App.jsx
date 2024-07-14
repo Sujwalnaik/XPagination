@@ -1,4 +1,3 @@
-import "./App.css";
 import PaginationTable from "./component/paginationTable";
 
 function App() {
