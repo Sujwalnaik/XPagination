@@ -26,7 +26,7 @@ function PaginationTable() {
 
         // setLoading(false);
       } catch (error) {
-        console.error(error, "Data is unable to fetch data");
+        // console.error(error, "Data is unable to fetch data");
         alert("something went wrong");
       } finally {
         setLoading(false);
